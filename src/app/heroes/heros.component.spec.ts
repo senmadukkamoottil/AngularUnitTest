@@ -32,4 +32,12 @@ describe('HerosComponent', () => {
 
         expect(component.heroes.find(item => item.id === 1)).toBeFalsy();
     });
+
+    it('should call the deleteHero function from heroSerice with hero parameter', () => {
+        mokHeroService.deleteHero.and.returnValue(of(true));
+        component.heroes = Heros;
+        component.delete(component.heroes[0]);
+        
+        expect(mokHeroService.deleteHero).toHaveBeenCalledWith(Heros[0]);
+    });
 });
