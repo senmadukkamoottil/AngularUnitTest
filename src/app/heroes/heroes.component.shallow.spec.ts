@@ -39,12 +39,17 @@ describe('HerosComponent', () => {
         });
         fixture = TestBed.createComponent(HeroesComponent);
     });
-    
+    // test number of heroes returned from HeroService
      it('should return heroes from the HeroService', () => {
          mokHeroService.getHeroes.and.returnValue(of(HEROES));
          fixture.detectChanges();
          expect(fixture.componentInstance.heroes.length).toBe(2);
-     })
-    
+     });
 
+     // test number of heroes created with for loop
+     it('should create the returned number of heroes from service', () => {
+        mokHeroService.getHeroes.and.returnValue(of(HEROES));
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelectorAll('li').length).toBe(2);
+     });
 });
